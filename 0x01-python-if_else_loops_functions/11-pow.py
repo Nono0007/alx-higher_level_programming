@@ -16,4 +16,4 @@ def pow(a, b):
 
     if nb < 0:
         result /= base
-    return results
+    return result
