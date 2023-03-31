@@ -1,15 +1,14 @@
 #!/usr/bin/python3
-"""A script that
-fetches https://intranet.hbtn.io/status.
+"""Uses the GitHub API to display a GitHub ID based on given credentials.
+Usage: ./10-my_github.py <GitHub username> <GitHub password>
+  - Uses Basic Authentication to access the ID.
 """
+import sys
+import requests
+from requests.auth import HTTPBasicAuth
 
 
-if __name__ == '__main__':
-    import urllib.request
-
-    with urllib.request.urlopen('https://intranet.hbtn.io/status') as resp:
-        content = resp.read()
-        print("Body response:")
-        print("\t- type: {}".format(type(content)))
-        print("\t- content: {}".format(content))
-        print("\t- utf8 content: {}".format(content.decode('utf-8')))
+if __name__ == "__main__":
+    auth = HTTPBasicAuth(sys.argv[1], sys.argv[2])
+    r = requests.get("https://api.github.com/user", auth=auth)
+    print(r.json().get("id"))
