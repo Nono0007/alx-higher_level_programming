@@ -6,7 +6,7 @@ let times = 0;
 
 request(starWarsUri, function (_err, _res, body) {
   body = JSON.parse(body).results;
-  
+
   for (let i = 0; i < body.length; ++i) {
     const characters = body[i].characters;
 
